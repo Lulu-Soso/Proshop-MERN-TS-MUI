@@ -1,21 +1,45 @@
-import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
-import { LinkContainer } from 'react-router-bootstrap';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Badge from '@mui/material/Badge';
+import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import SearchBox from './SearchBox';
 import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [adminAnchorEl, setAdminAnchorEl] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [logoutApiCall] = useLogoutMutation();
+
+  const handleUserMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleAdminMenu = (event) => {
+    setAdminAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleCloseAdminMenu = () => {
+    setAdminAnchorEl(null);
+  };
 
   const logoutHandler = async () => {
     try {
@@ -29,65 +53,55 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
-        <Container>
-          <LinkContainer to='/'>
-            <Navbar.Brand>
-              <img src={logo} alt='ProShop' />
-              ProShop
-            </Navbar.Brand>
-          </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
-              <SearchBox />
-              <LinkContainer to='/cart'>
-                <Nav.Link>
-                  <FaShoppingCart /> Cart
-                  {cartItems.length > 0 && (
-                    <Badge pill bg='success' style={{ marginLeft: '5px' }}>
-                      {cartItems.reduce((a, c) => a + c.qty, 0)}
-                    </Badge>
-                  )}
-                </Nav.Link>
-              </LinkContainer>
-              {userInfo ? (
-                <>
-                  <NavDropdown title={userInfo.name} id='username'>
-                    <LinkContainer to='/profile'>
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
-                    </LinkContainer>
-                    <NavDropdown.Item onClick={logoutHandler}>
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </>
-              ) : (
-                <LinkContainer to='/login'>
-                  <Nav.Link>
-                    <FaUser /> Sign In
-                  </Nav.Link>
-                </LinkContainer>
-              )}
-
-              {/* Admin Links */}
-              {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
-                  <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/userlist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1, color: 'inherit', textDecoration: 'none' }}>
+            <img src={logo} alt="ProShop" style={{ verticalAlign: 'middle', marginRight: '10px' }} />
+            ProShop
+          </Typography>
+          <SearchBox />
+          <IconButton component={Link} to="/cart" color="inherit">
+            <Badge badgeContent={cartItems.reduce((a, c) => a + c.qty, 0)} color="secondary">
+              <FaShoppingCart />
+            </Badge>
+          </IconButton>
+          {userInfo ? (
+            <>
+              <IconButton color="inherit" onClick={handleUserMenu}>
+                <FaUser />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem component={Link} to="/profile" onClick={handleCloseUserMenu}>Profile</MenuItem>
+                <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <IconButton component={Link} to="/login" color="inherit">
+              <FaUser />
+            </IconButton>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <>
+              <IconButton color="inherit" onClick={handleAdminMenu}>
+                Admin
+              </IconButton>
+              <Menu
+                anchorEl={adminAnchorEl}
+                open={Boolean(adminAnchorEl)}
+                onClose={handleCloseAdminMenu}
+              >
+                <MenuItem component={Link} to="/admin/userlist" onClick={handleCloseAdminMenu}>Users</MenuItem>
+                <MenuItem component={Link} to="/admin/productlist" onClick={handleCloseAdminMenu}>Products</MenuItem>
+                <MenuItem component={Link} to="/admin/orderlist" onClick={handleCloseAdminMenu}>Orders</MenuItem>
+              </Menu>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
     </header>
   );
 };

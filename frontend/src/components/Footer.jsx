@@ -1,4 +1,7 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import React from 'react';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,13 +9,14 @@ const Footer = () => {
   return (
     <footer>
       <Container>
-        <Row>
-          <Col className='text-center py-3'>
-            <p>ProShop &copy; {currentYear}</p>
-          </Col>
-        </Row>
+        <Box display="flex" justifyContent="center" py={3}>
+          <Typography variant="body1">
+            ProShop &copy; {currentYear}
+          </Typography>
+        </Box>
       </Container>
     </footer>
   );
 };
+
 export default Footer;

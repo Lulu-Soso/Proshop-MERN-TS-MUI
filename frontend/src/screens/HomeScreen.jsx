@@ -1,7 +1,8 @@
-import { Row, Col } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
-import { Link } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -11,20 +12,16 @@ import Meta from '../components/Meta';
 
 const HomeScreen = () => {
   const { pageNumber, keyword } = useParams();
-
-  const { data, isLoading, error } = useGetProductsQuery({
-    keyword,
-    pageNumber,
-  });
+  const { data, isLoading, error } = useGetProductsQuery({ keyword, pageNumber });
 
   return (
     <>
       {!keyword ? (
         <ProductCarousel />
       ) : (
-        <Link to='/' className='btn btn-light mb-4'>
+        <Button variant="contained" color="primary" component={Link} to="/" className='mb-4'>
           Go Back
-        </Link>
+        </Button>
       )}
       {isLoading ? (
         <Loader />
@@ -36,13 +33,13 @@ const HomeScreen = () => {
         <>
           <Meta />
           <h1>Latest Products</h1>
-          <Row>
+          <Grid container spacing={3}>
             {data.products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <Grid item key={product._id} xs={12} sm={6} lg={4} xl={3}>
                 <Product product={product} />
-              </Col>
+              </Grid>
             ))}
-          </Row>
+          </Grid>
           <Paginate
             pages={data.pages}
             page={data.page}

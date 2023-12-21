@@ -1,55 +1,28 @@
+import React from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const Rating = ({ value, text, color }) => {
   return (
-    <div className='rating'>
-      <span>
-        {value >= 1 ? (
-          <FaStar />
-        ) : value >= 0.5 ? (
-          <FaStarHalfAlt />
-        ) : (
-          <FaRegStar />
-        )}
-      </span>
-      <span>
-        {value >= 2 ? (
-          <FaStar />
-        ) : value >= 1.5 ? (
-          <FaStarHalfAlt />
-        ) : (
-          <FaRegStar />
-        )}
-      </span>
-      <span>
-        {value >= 3 ? (
-          <FaStar />
-        ) : value >= 2.5 ? (
-          <FaStarHalfAlt />
-        ) : (
-          <FaRegStar />
-        )}
-      </span>
-      <span>
-        {value >= 4 ? (
-          <FaStar />
-        ) : value >= 3.5 ? (
-          <FaStarHalfAlt />
-        ) : (
-          <FaRegStar />
-        )}
-      </span>
-      <span>
-        {value >= 5 ? (
-          <FaStar />
-        ) : value >= 4.5 ? (
-          <FaStarHalfAlt />
-        ) : (
-          <FaRegStar />
-        )}
-      </span>
-      <span className='rating-text'>{text && text}</span>
-    </div>
+    <Box display="flex" alignItems="center">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <span key={star}>
+          {value >= star ? (
+            <FaStar style={{ color }} />
+          ) : value >= star - 0.5 ? (
+            <FaStarHalfAlt style={{ color }} />
+          ) : (
+            <FaRegStar style={{ color }} />
+          )}
+        </span>
+      ))}
+      {text && (
+        <Typography variant="body2" sx={{ ml: 1 }}>
+          {text}
+        </Typography>
+      )}
+    </Box>
   );
 };
 

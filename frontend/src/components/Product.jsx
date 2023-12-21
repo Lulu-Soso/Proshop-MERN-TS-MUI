@@ -1,30 +1,38 @@
-import { Card } from 'react-bootstrap';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Rating from './Rating';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Rating from './Rating'; // Assurez-vous que ce composant est compatible avec Material-UI
 
 const Product = ({ product }) => {
   return (
-    <Card className='my-3 p-3 rounded'>
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', my: 3, p: 1 }}>
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant='top' />
+        <CardMedia
+          component="img"
+          image={product.image}
+          alt={product.name}
+        />
       </Link>
 
-      <Card.Body>
-        <Link to={`/product/${product._id}`}>
-          <Card.Title as='div' className='product-title'>
-            <strong>{product.name}</strong>
-          </Card.Title>
+      <CardContent>
+        <Link to={`/product/${product._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Typography gutterBottom variant="h6" component="div">
+            {product.name}
+          </Typography>
         </Link>
 
-        <Card.Text as='div'>
-          <Rating
-            value={product.rating}
-            text={`${product.numReviews} reviews`}
-          />
-        </Card.Text>
+        <Rating
+          value={product.rating}
+          text={`${product.numReviews} reviews`}
+        />
 
-        <Card.Text as='h3'>${product.price}</Card.Text>
-      </Card.Body>
+        <Typography variant="h5" color="text.secondary">
+          ${product.price}
+        </Typography>
+      </CardContent>
     </Card>
   );
 };

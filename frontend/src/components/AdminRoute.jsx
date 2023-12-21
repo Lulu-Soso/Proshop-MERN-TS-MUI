@@ -1,12 +1,25 @@
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const AdminRoute = () => {
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo, isLoading } = useSelector((state) => state.auth);
+
+  if (isLoading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return userInfo && userInfo.isAdmin ? (
     <Outlet />
   ) : (
     <Navigate to='/login' replace />
   );
 };
+
 export default AdminRoute;

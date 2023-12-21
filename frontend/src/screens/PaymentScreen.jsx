@@ -1,7 +1,14 @@
-import { useState, useEffect } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Container from '@mui/material/Container';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../slices/cartSlice';
@@ -18,7 +25,6 @@ const PaymentScreen = () => {
   }, [navigate, shippingAddress]);
 
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
-
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -28,31 +34,33 @@ const PaymentScreen = () => {
   };
 
   return (
-    <FormContainer>
-      <CheckoutSteps step1 step2 step3 />
-      <h1>Payment Method</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group>
-          <Form.Label as='legend'>Select Method</Form.Label>
-          <Col>
-            <Form.Check
-              className='my-2'
-              type='radio'
-              label='PayPal or Credit Card'
-              id='PayPal'
-              name='paymentMethod'
-              value='PayPal'
-              checked
+    <Container component="main" maxWidth="sm">
+        <CheckoutSteps step1 step2 step3 />
+      <FormContainer>
+        <Typography variant='h4' gutterBottom>Payment Method</Typography>
+        <form onSubmit={submitHandler}>
+          <FormControl component="fieldset" className='my-3'>
+            <FormLabel component="legend">Select Method</FormLabel>
+            <RadioGroup
+              aria-label="paymentMethod"
+              name="paymentMethod"
+              value={paymentMethod}
               onChange={(e) => setPaymentMethod(e.target.value)}
-            ></Form.Check>
-          </Col>
-        </Form.Group>
+            >
+              <FormControlLabel
+                value="PayPal"
+                control={<Radio />}
+                label="PayPal or Credit Card"
+              />
+            </RadioGroup>
+          </FormControl>
 
-        <Button type='submit' variant='primary'>
-          Continue
-        </Button>
-      </Form>
-    </FormContainer>
+          <Button type='submit' variant='contained' color='primary'>
+            Continue
+          </Button>
+        </form>
+      </FormContainer>
+    </Container>
   );
 };
 
