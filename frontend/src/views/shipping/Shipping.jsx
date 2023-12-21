@@ -6,9 +6,9 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import FormContainer from '../components/FormContainer'; // Assurez-vous que ce composant est compatible avec Material-UI
-import CheckoutSteps from '../components/CheckoutSteps'; // Assurez-vous que ce composant est compatible avec Material-UI
-import { saveShippingAddress } from '../slices/cartSlice';
+import FormContainer from '../../components/common/FormContainer'; // Assurez-vous que ce composant est compatible avec Material-UI
+import CheckoutSteps from '../../components/CheckoutSteps'; // Assurez-vous que ce composant est compatible avec Material-UI
+import { saveShippingAddress } from '../../slices/cartSlice';
 
 const ShippingScreen = () => {
   const cart = useSelector((state) => state.cart);
@@ -16,7 +16,9 @@ const ShippingScreen = () => {
 
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
-  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
+  const [postalCode, setPostalCode] = useState(
+    shippingAddress.postalCode || ''
+  );
   const [country, setCountry] = useState(shippingAddress.country || '');
 
   const dispatch = useDispatch();
@@ -29,17 +31,19 @@ const ShippingScreen = () => {
   };
 
   return (
-    <Container component="main" maxWidth="sm">
-        <CheckoutSteps step1 step2 />
+    <Container component='main' maxWidth='sm'>
+      <CheckoutSteps step1 step2 />
       <FormContainer>
-        <Typography variant='h4' sx={{ mt: 3, mb: 2 }}>Shipping</Typography>
+        <Typography variant='h4' sx={{ mt: 3, mb: 2 }}>
+          Shipping
+        </Typography>
         <form onSubmit={submitHandler}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
-                label="Address"
+                label='Address'
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
@@ -48,7 +52,7 @@ const ShippingScreen = () => {
               <TextField
                 required
                 fullWidth
-                label="City"
+                label='City'
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />
@@ -57,7 +61,7 @@ const ShippingScreen = () => {
               <TextField
                 required
                 fullWidth
-                label="Postal Code"
+                label='Postal Code'
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
@@ -66,17 +70,17 @@ const ShippingScreen = () => {
               <TextField
                 required
                 fullWidth
-                label="Country"
+                label='Country'
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
               />
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             sx={{ mt: 3 }}
           >
             Continue

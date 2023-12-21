@@ -9,11 +9,11 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-import Message from '../components/Message';
-import CheckoutSteps from '../components/CheckoutSteps'; // Assurez-vous que ce composant est compatible avec Material-UI
-import Loader from '../components/Loader';
-import { useCreateOrderMutation } from '../slices/ordersApiSlice';
-import { clearCartItems } from '../slices/cartSlice';
+import Message from '../../components/Message';
+import CheckoutSteps from '../../components/CheckoutSteps'; // Assurez-vous que ce composant est compatible avec Material-UI
+import Loader from '../../components/layouts/Loader';
+import { useCreateOrderMutation } from '../../slices/ordersApiSlice';
+import { clearCartItems } from '../../slices/cartSlice';
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -65,7 +65,10 @@ const PlaceOrderScreen = () => {
 
             <ListItem>
               <Typography variant='h6'>Payment Method</Typography>
-              <Typography><strong>Method: </strong>{cart.paymentMethod}</Typography>
+              <Typography>
+                <strong>Method: </strong>
+                {cart.paymentMethod}
+              </Typography>
             </ListItem>
 
             <ListItem>
@@ -78,13 +81,21 @@ const PlaceOrderScreen = () => {
                     <ListItem key={index}>
                       <Grid container spacing={1}>
                         <Grid item md={1}>
-                          <img src={item.image} alt={item.name} style={{ width: '100%' }} />
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            style={{ width: '100%' }}
+                          />
                         </Grid>
                         <Grid item xs>
-                          <Link to={`/product/${item.product}`}>{item.name}</Link>
+                          <Link to={`/product/${item.product}`}>
+                            {item.name}
+                          </Link>
                         </Grid>
                         <Grid item md={4}>
-                          {`${item.qty} x $${item.price} = $${item.qty * item.price}`}
+                          {`${item.qty} x $${item.price} = $${
+                            item.qty * item.price
+                          }`}
                         </Grid>
                       </Grid>
                     </ListItem>
@@ -100,7 +111,7 @@ const PlaceOrderScreen = () => {
             <CardContent>
               <Typography variant='h6'>Order Summary</Typography>
               {/* Display order summary here */}
-              
+
               {error && <Message variant='danger'>{error}</Message>}
 
               <Button

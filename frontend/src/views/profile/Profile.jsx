@@ -13,11 +13,11 @@ import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
-import { useProfileMutation } from '../slices/usersApiSlice';
-import { useGetMyOrdersQuery } from '../slices/ordersApiSlice';
-import { setCredentials } from '../slices/authSlice';
+import Message from '../../components/Message';
+import Loader from '../../components/layouts/Loader';
+import { useProfileMutation } from '../../slices/usersApiSlice';
+import { useGetMyOrdersQuery } from '../../slices/ordersApiSlice';
+import { setCredentials } from '../../slices/authSlice';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -115,7 +115,9 @@ const ProfileScreen = () => {
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <Message variant='danger'>{error?.data?.message || error.error}</Message>
+          <Message variant='danger'>
+            {error?.data?.message || error.error}
+          </Message>
         ) : (
           <Paper>
             <Table size='small'>
@@ -150,7 +152,11 @@ const ProfileScreen = () => {
                       )}
                     </TableCell>
                     <TableCell>
-                      <Button component={Link} to={`/order/${order._id}`} size='small'>
+                      <Button
+                        component={Link}
+                        to={`/order/${order._id}`}
+                        size='small'
+                      >
                         Details
                       </Button>
                     </TableCell>

@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Rating from './Rating'; // Assurez-vous que ce composant est compatible avec Material-UI
+import Rating from './Rating';
 
 const Product = ({ product }) => {
   return (

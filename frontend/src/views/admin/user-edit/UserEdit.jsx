@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import FormContainer from '../../components/FormContainer';
+import Message from '../../../components/Message';
+import Loader from '../../../components/layouts/Loader';
+import FormContainer from '../../../components/common/FormContainer';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import {
   useGetUserDetailsQuery,
   useUpdateUserMutation,
-} from '../../slices/usersApiSlice';
+} from '../../../slices/usersApiSlice';
 
 const UserEditScreen = () => {
   const { id: userId } = useParams();

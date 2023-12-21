@@ -11,8 +11,8 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import { FaTrash } from 'react-icons/fa';
-import Message from '../components/Message';
-import { addToCart, removeFromCart } from '../slices/cartSlice';
+import Message from '../../components/Message';
+import { addToCart, removeFromCart } from '../../slices/cartSlice';
 
 const CartScreen = () => {
   const navigate = useNavigate();

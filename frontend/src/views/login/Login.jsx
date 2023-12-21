@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../components/Loader';
-import { useLoginMutation } from '../slices/usersApiSlice';
-import { setCredentials } from '../slices/authSlice';
+import Loader from '../../components/layouts/Loader';
+import { useLoginMutation } from '../../slices/usersApiSlice';
+import { setCredentials } from '../../slices/authSlice';
 import { toast } from 'react-toastify';
 
 const LoginScreen = () => {
@@ -43,34 +43,34 @@ const LoginScreen = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth='sm'>
       <Typography variant='h4' sx={{ mt: 3 }}>
         Sign In
       </Typography>
       <form onSubmit={submitHandler}>
         <TextField
-          label="Email Address"
-          variant="outlined"
-          type="email"
+          label='Email Address'
+          variant='outlined'
+          type='email'
           fullWidth
-          margin="normal"
+          margin='normal'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          label="Password"
-          variant="outlined"
-          type="password"
+          label='Password'
+          variant='outlined'
+          type='password'
           fullWidth
-          margin="normal"
+          margin='normal'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button
           disabled={isLoading}
-          type="submit"
-          variant="contained"
-          color="primary"
+          type='submit'
+          variant='contained'
+          color='primary'
           fullWidth
           sx={{ mt: 3, mb: 2 }}
         >
@@ -82,7 +82,9 @@ const LoginScreen = () => {
         <Grid item xs>
           <Typography variant='body1'>
             New Customer?{' '}
-            <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+            <Link
+              to={redirect ? `/register?redirect=${redirect}` : '/register'}
+            >
               Register
             </Link>
           </Typography>

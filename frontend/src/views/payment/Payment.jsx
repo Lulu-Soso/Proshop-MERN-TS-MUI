@@ -9,9 +9,9 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import FormContainer from '../components/FormContainer';
-import CheckoutSteps from '../components/CheckoutSteps';
-import { savePaymentMethod } from '../slices/cartSlice';
+import FormContainer from '../../components/common/FormContainer';
+import CheckoutSteps from '../../components/CheckoutSteps';
+import { savePaymentMethod } from '../../slices/cartSlice';
 
 const PaymentScreen = () => {
   const navigate = useNavigate();
@@ -34,23 +34,25 @@ const PaymentScreen = () => {
   };
 
   return (
-    <Container component="main" maxWidth="sm">
-        <CheckoutSteps step1 step2 step3 />
+    <Container component='main' maxWidth='sm'>
+      <CheckoutSteps step1 step2 step3 />
       <FormContainer>
-        <Typography variant='h4' gutterBottom>Payment Method</Typography>
+        <Typography variant='h4' gutterBottom>
+          Payment Method
+        </Typography>
         <form onSubmit={submitHandler}>
-          <FormControl component="fieldset" className='my-3'>
-            <FormLabel component="legend">Select Method</FormLabel>
+          <FormControl component='fieldset' className='my-3'>
+            <FormLabel component='legend'>Select Method</FormLabel>
             <RadioGroup
-              aria-label="paymentMethod"
-              name="paymentMethod"
+              aria-label='paymentMethod'
+              name='paymentMethod'
               value={paymentMethod}
               onChange={(e) => setPaymentMethod(e.target.value)}
             >
               <FormControlLabel
-                value="PayPal"
+                value='PayPal'
                 control={<Radio />}
-                label="PayPal or Credit Card"
+                label='PayPal or Credit Card'
               />
             </RadioGroup>
           </FormControl>

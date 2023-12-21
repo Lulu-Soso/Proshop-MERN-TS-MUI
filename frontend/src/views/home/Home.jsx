@@ -1,25 +1,34 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetProductsQuery } from '../slices/productsApiSlice';
+import { useGetProductsQuery } from '../../slices/productsApiSlice';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Product from '../components/Product';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
-import Paginate from '../components/Paginate';
-import ProductCarousel from '../components/ProductCarousel';
-import Meta from '../components/Meta';
+import Product from '../../components/Product';
+import Loader from '../../components/layouts/Loader';
+import Message from '../../components/Message';
+import Paginate from '../../components/Paginate';
+import ProductCarousel from '../../components/ProductCarousel';
+import Meta from '../../components/Meta';
 
 const HomeScreen = () => {
   const { pageNumber, keyword } = useParams();
-  const { data, isLoading, error } = useGetProductsQuery({ keyword, pageNumber });
+  const { data, isLoading, error } = useGetProductsQuery({
+    keyword,
+    pageNumber,
+  });
 
   return (
     <>
       {!keyword ? (
         <ProductCarousel />
       ) : (
-        <Button variant="contained" color="primary" component={Link} to="/" className='mb-4'>
+        <Button
+          variant='contained'
+          color='primary'
+          component={Link}
+          to='/'
+          className='mb-4'
+        >
           Go Back
         </Button>
       )}

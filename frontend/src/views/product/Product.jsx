@@ -19,12 +19,12 @@ import { toast } from 'react-toastify';
 import {
   useGetProductDetailsQuery,
   useCreateReviewMutation,
-} from '../slices/productsApiSlice';
-import Rating from '../components/Rating';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
-import Meta from '../components/Meta';
-import { addToCart } from '../slices/cartSlice';
+} from '../../slices/productsApiSlice';
+import Rating from '../../components/Rating';
+import Loader from '../../components/layouts/Loader';
+import Message from '../../components/Message';
+import Meta from '../../components/Meta';
+import { addToCart } from '../../slices/cartSlice';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();

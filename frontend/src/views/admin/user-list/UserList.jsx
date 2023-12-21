@@ -2,12 +2,12 @@ import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
+import Message from '../../../components/Message';
+import Loader from '../../../components/layouts/Loader';
 import {
   useDeleteUserMutation,
   useGetUsersQuery,
-} from '../../slices/usersApiSlice';
+} from '../../../slices/usersApiSlice';
 import { toast } from 'react-toastify';
 
 const UserListScreen = () => {

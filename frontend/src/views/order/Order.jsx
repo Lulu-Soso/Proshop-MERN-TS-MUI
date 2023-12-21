@@ -10,14 +10,14 @@ import Typography from '@mui/material/Typography';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
+import Message from '../../components/Message';
+import Loader from '../../components/layouts/Loader';
 import {
   useDeliverOrderMutation,
   useGetOrderDetailsQuery,
   useGetPaypalClientIdQuery,
   usePayOrderMutation,
-} from '../slices/ordersApiSlice';
+} from '../../slices/ordersApiSlice';
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
@@ -76,14 +76,14 @@ const OrderScreen = () => {
     });
   }
 
- // TESTING ONLY! REMOVE BEFORE PRODUCTION
- async function onApproveTest() {
-  await payOrder({ orderId, details: { payer: {} } });
-  refetch();
+  // TESTING ONLY! REMOVE BEFORE PRODUCTION
+  async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} } });
+    refetch();
 
-  toast.success('Order is paid');
-}
-// TESTING ONLY! REMOVE BEFORE PRODUCTION
+    toast.success('Order is paid');
+  }
+  // TESTING ONLY! REMOVE BEFORE PRODUCTION
 
   function onError(err) {
     toast.error(err.message);
@@ -114,7 +114,9 @@ const OrderScreen = () => {
     <Message variant='danger'>{error}</Message>
   ) : (
     <>
-      <Typography variant='h4' gutterBottom>Order {order._id}</Typography>
+      <Typography variant='h4' gutterBottom>
+        Order {order._id}
+      </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={8}>
           <List>
@@ -122,15 +124,26 @@ const OrderScreen = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Typography variant='h6'>Shipping</Typography>
-                  <p><strong>Name: </strong> {order.user.name}</p>
-                  <p><strong>Email: </strong> <a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
+                  <p>
+                    <strong>Name: </strong> {order.user.name}
+                  </p>
+                  <p>
+                    <strong>Email: </strong>{' '}
+                    <a href={`mailto:${order.user.email}`}>
+                      {order.user.email}
+                    </a>
+                  </p>
                   <p>
                     <strong>Address:</strong>
-                    {order.shippingAddress.address}, {order.shippingAddress.city} 
-                    {order.shippingAddress.postalCode}, {order.shippingAddress.country}
+                    {order.shippingAddress.address},{' '}
+                    {order.shippingAddress.city}
+                    {order.shippingAddress.postalCode},{' '}
+                    {order.shippingAddress.country}
                   </p>
                   {order.isDelivered ? (
-                    <Message variant='success'>Delivered on {order.deliveredAt}</Message>
+                    <Message variant='success'>
+                      Delivered on {order.deliveredAt}
+                    </Message>
                   ) : (
                     <Message variant='danger'>Not Delivered</Message>
                   )}
@@ -142,7 +155,10 @@ const OrderScreen = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Typography variant='h6'>Payment Method</Typography>
-                  <p><strong>Method: </strong>{order.paymentMethod}</p>
+                  <p>
+                    <strong>Method: </strong>
+                    {order.paymentMethod}
+                  </p>
                   {order.isPaid ? (
                     <Message variant='success'>Paid on {order.paidAt}</Message>
                   ) : (
@@ -162,10 +178,16 @@ const OrderScreen = () => {
                     order.orderItems.map((item, index) => (
                       <Grid container key={index} spacing={2}>
                         <Grid item xs={1}>
-                          <img src={item.image} alt={item.name} style={{ width: '100%' }} />
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            style={{ width: '100%' }}
+                          />
                         </Grid>
                         <Grid item xs={8}>
-                          <Link to={`/product/${item.product}`}>{item.name}</Link>
+                          <Link to={`/product/${item.product}`}>
+                            {item.name}
+                          </Link>
                         </Grid>
                         <Grid item xs={3}>
                           {item.qty} x ${item.price} = ${item.qty * item.price}
@@ -190,37 +212,39 @@ const OrderScreen = () => {
                   {isPending ? (
                     <Loader />
                   ) : (
-                    
                     <>
-                    {/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
-                    <Button
-                      style={{ marginBottom: '10px' }}
-                      onClick={onApproveTest}
-                    >
-                      Test Pay Order
-                    </Button>
-                    {/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
+                      {/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
+                      <Button
+                        style={{ marginBottom: '10px' }}
+                        onClick={onApproveTest}
+                      >
+                        Test Pay Order
+                      </Button>
+                      {/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
 
-                    <PayPalButtons
-                      createOrder={createOrder}
-                      onApprove={onApprove}
-                      onError={onError}
-                    />
-                  </>
+                      <PayPalButtons
+                        createOrder={createOrder}
+                        onApprove={onApprove}
+                        onError={onError}
+                      />
+                    </>
                   )}
                 </>
               )}
               {loadingDeliver && <Loader />}
-              {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-                <Button
-                  type='button'
-                  variant='contained'
-                  onClick={deliverHandler}
-                  fullWidth
-                >
-                  Mark As Delivered
-                </Button>
-              )}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <Button
+                    type='button'
+                    variant='contained'
+                    onClick={deliverHandler}
+                    fullWidth
+                  >
+                    Mark As Delivered
+                  </Button>
+                )}
             </CardContent>
           </Card>
         </Grid>

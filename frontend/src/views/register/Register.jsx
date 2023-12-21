@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../components/Loader'; // Assurez-vous que ce composant est compatible avec Material-UI
-import { useRegisterMutation } from '../slices/usersApiSlice';
-import { setCredentials } from '../slices/authSlice';
+import Loader from '../../components/layouts/Loader'; // Assurez-vous que ce composant est compatible avec Material-UI
+import { useRegisterMutation } from '../../slices/usersApiSlice';
+import { setCredentials } from '../../slices/authSlice';
 import { toast } from 'react-toastify';
 
 const RegisterScreen = () => {
@@ -51,61 +51,61 @@ const RegisterScreen = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Typography component="h1" variant="h5">
+    <Container component='main' maxWidth='xs'>
+      <Typography component='h1' variant='h5'>
         Register
       </Typography>
       <form onSubmit={submitHandler}>
         <TextField
-          margin="normal"
+          margin='normal'
           required
           fullWidth
-          id="name"
-          label="Name"
-          name="name"
-          autoComplete="name"
+          id='name'
+          label='Name'
+          name='name'
+          autoComplete='name'
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <TextField
-          margin="normal"
+          margin='normal'
           required
           fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
+          id='email'
+          label='Email Address'
+          name='email'
+          autoComplete='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          margin="normal"
+          margin='normal'
           required
           fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
+          name='password'
+          label='Password'
+          type='password'
+          id='password'
+          autoComplete='current-password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <TextField
-          margin="normal"
+          margin='normal'
           required
           fullWidth
-          name="confirmPassword"
-          label="Confirm Password"
-          type="password"
-          id="confirmPassword"
+          name='confirmPassword'
+          label='Confirm Password'
+          type='password'
+          id='confirmPassword'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <Button
-          type="submit"
+          type='submit'
           fullWidth
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           disabled={isLoading}
           sx={{ mt: 3, mb: 2 }}
         >
@@ -115,7 +115,10 @@ const RegisterScreen = () => {
       </form>
       <Grid container>
         <Grid item xs>
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} variant="body2">
+          <Link
+            to={redirect ? `/login?redirect=${redirect}` : '/login'}
+            variant='body2'
+          >
             Already have an account? Login
           </Link>
         </Grid>
