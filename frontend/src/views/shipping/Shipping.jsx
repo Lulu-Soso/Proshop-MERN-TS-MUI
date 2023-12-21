@@ -10,7 +10,7 @@ import FormContainer from '../../components/common/FormContainer'; // Assurez-vo
 import CheckoutSteps from '../../components/CheckoutSteps'; // Assurez-vous que ce composant est compatible avec Material-UI
 import { saveShippingAddress } from '../../slices/cartSlice';
 
-const ShippingScreen = () => {
+const Shipping = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
@@ -91,4 +91,4 @@ const ShippingScreen = () => {
   );
 };
 
-export default ShippingScreen;
+export default Shipping;

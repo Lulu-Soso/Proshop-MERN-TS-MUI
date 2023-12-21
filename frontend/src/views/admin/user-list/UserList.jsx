@@ -1,18 +1,20 @@
 import React from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
-import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
-import Message from '../../../components/Message';
-import Loader from '../../../components/layouts/Loader';
+import { Link } from 'react-router-dom';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import Message from '../../../components/Message'; // Update or replace this component
+import Loader from '../../../components/layouts/Loader'; // Update or replace this component
 import {
   useDeleteUserMutation,
   useGetUsersQuery,
 } from '../../../slices/usersApiSlice';
 import { toast } from 'react-toastify';
 
-const UserListScreen = () => {
+const UserList = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
-
   const [deleteUser] = useDeleteUserMutation();
 
   const deleteHandler = async (id) => {
@@ -28,67 +30,64 @@ const UserListScreen = () => {
 
   return (
     <>
-      <h1>Users</h1>
+      <Typography variant='h4' sx={{ mb: 2 }}>Users</Typography>
       {isLoading ? (
-        <Loader />
+        <Loader /> // Update or replace this component
       ) : error ? (
-        <Message variant='danger'>
-          {error?.data?.message || error.error}
-        </Message>
+        <Message variant='danger'>{error?.data?.message || error.error}</Message> // Update or replace this component
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>EMAIL</th>
-              <th>ADMIN</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
-                <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
-                </td>
-                <td>
-                  {user.isAdmin ? (
-                    <FaCheck style={{ color: 'green' }} />
-                  ) : (
-                    <FaTimes style={{ color: 'red' }} />
-                  )}
-                </td>
-                <td>
-                  {!user.isAdmin && (
-                    <>
-                      <LinkContainer
-                        to={`/admin/user/${user._id}/edit`}
-                        style={{ marginRight: '10px' }}
-                      >
-                        <Button variant='light' className='btn-sm'>
-                          <FaEdit />
+        <TableContainer component={Paper}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>NAME</TableCell>
+                <TableCell>EMAIL</TableCell>
+                <TableCell>ADMIN</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {users.map((user) => (
+                <TableRow key={user._id}>
+                  <TableCell>{user._id}</TableCell>
+                  <TableCell>{user.name}</TableCell>
+                  <TableCell>
+                    <a href={`mailto:${user.email}`}>{user.email}</a>
+                  </TableCell>
+                  <TableCell>
+                    {user.isAdmin ? (
+                      <CheckIcon style={{ color: 'green' }} />
+                    ) : (
+                      <CloseIcon style={{ color: 'red' }} />
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {!user.isAdmin && (
+                      <>
+                        <Link to={`/admin/user/${user._id}/edit`} style={{ marginRight: '10px' }}>
+                          <Button variant='outlined'>
+                            <EditIcon />
+                          </Button>
+                        </Link>
+                        <Button
+                          variant='outlined'
+                          color='error'
+                          onClick={() => deleteHandler(user._id)}
+                        >
+                          <DeleteIcon />
                         </Button>
-                      </LinkContainer>
-                      <Button
-                        variant='danger'
-                        className='btn-sm'
-                        onClick={() => deleteHandler(user._id)}
-                      >
-                        <FaTrash style={{ color: 'white' }} />
-                      </Button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+                      </>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
     </>
   );
 };
 
-export default UserListScreen;
+export default UserList;

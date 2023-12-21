@@ -1,9 +1,11 @@
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col } from 'react-bootstrap';
-import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useParams } from 'react-router-dom';
-import Message from '../../../components/Message';
-import Loader from '../../../components/layouts/Loader';
+import Message from '../../../components/Message'; 
+import Loader from '../../../components/layouts/Loader'; 
 import Paginate from '../../../components/Paginate';
 import {
   useGetProductsQuery,
@@ -12,7 +14,7 @@ import {
 } from '../../../slices/productsApiSlice';
 import { toast } from 'react-toastify';
 
-const ProductListScreen = () => {
+const ProductList= () => {
   const { pageNumber } = useParams();
 
   const { data, isLoading, error, refetch } = useGetProductsQuery({
@@ -49,62 +51,64 @@ const ProductListScreen = () => {
 
   return (
     <>
-      <Row className='align-items-center'>
-        <Col>
-          <h1>Products</h1>
-        </Col>
-        <Col className='text-end'>
-          <Button className='my-3' onClick={createProductHandler}>
-            <FaPlus /> Create Product
+      <Grid container alignItems='center' justifyContent='space-between'>
+        <Grid item>
+          <Typography variant='h4'>Products</Typography>
+        </Grid>
+        <Grid item>
+          <Button 
+            startIcon={<AddIcon />} 
+            variant='contained' 
+            color='primary' 
+            onClick={createProductHandler}
+          >
+            Create Product
           </Button>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
 
-      {loadingCreate && <Loader />}
-      {loadingDelete && <Loader />}
+      {loadingCreate && <Loader />} 
+      {loadingDelete && <Loader />} 
       {isLoading ? (
-        <Loader />
+        <Loader /> 
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Message variant='danger'>{error}</Message> 
       ) : (
         <>
-          <Table striped bordered hover responsive className='table-sm'>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>{product.price} €</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant='light' className='btn-sm mx-2'>
-                        <FaEdit />
-                      </Button>
-                    </LinkContainer>
-                    <Button
-                      variant='danger'
-                      className='btn-sm'
-                      onClick={() => deleteHandler(product._id)}
-                    >
-                      <FaTrash style={{ color: 'white' }} />
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <TableContainer component={Paper}>
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell>NAME</TableCell>
+                  <TableCell>PRICE</TableCell>
+                  <TableCell>CATEGORY</TableCell>
+                  <TableCell>BRAND</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.products.map((product) => (
+                  <TableRow key={product._id}>
+                    <TableCell>{product._id}</TableCell>
+                    <TableCell>{product.name}</TableCell>
+                    <TableCell>{product.price} €</TableCell>
+                    <TableCell>{product.category}</TableCell>
+                    <TableCell>{product.brand}</TableCell>
+                    <TableCell>
+                      <Link to={`/admin/product/${product._id}/edit`}>
+                        <Button startIcon={<EditIcon />} />
+                      </Link>
+                      <Button
+                        startIcon={<DeleteIcon />}
+                        onClick={() => deleteHandler(product._id)}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
           <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
@@ -112,4 +116,4 @@ const ProductListScreen = () => {
   );
 };
 
-export default ProductListScreen;
+export default ProductList;

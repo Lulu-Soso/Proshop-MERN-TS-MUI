@@ -10,7 +10,7 @@ import Paginate from '../../components/Paginate';
 import ProductCarousel from '../../components/ProductCarousel';
 import Meta from '../../components/Meta';
 
-const HomeScreen = () => {
+const Home = () => {
   const { pageNumber, keyword } = useParams();
   const { data, isLoading, error } = useGetProductsQuery({
     keyword,
@@ -60,4 +60,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default Home;

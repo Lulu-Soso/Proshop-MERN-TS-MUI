@@ -16,7 +16,7 @@ import { FaTrash } from 'react-icons/fa';
 import Message from '../../components/Message';
 import { addToCart, removeFromCart } from '../../slices/cartSlice';
 
-const CartScreen = () => {
+const Cart= () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -130,4 +130,4 @@ const CartScreen = () => {
   );
 };
 
-export default CartScreen;
+export default Cart;

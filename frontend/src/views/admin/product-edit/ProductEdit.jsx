@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
-import Message from '../../../components/Message';
-import Loader from '../../../components/layouts/Loader';
-import FormContainer from '../../../components/common/FormContainer';
+import { TextField, Button, Paper, Grid, Typography } from '@mui/material';
+import Message from '../../../components/Message'; 
+import Loader from '../../../components/layouts/Loader'; 
 import { toast } from 'react-toastify';
 import {
   useGetProductDetailsQuery,
@@ -11,7 +10,7 @@ import {
   useUploadProductImageMutation,
 } from '../../../slices/productsApiSlice';
 
-const ProductEditScreen = () => {
+const ProductEdit = () => {
   const { id: productId } = useParams();
 
   const [name, setName] = useState('');
@@ -29,13 +28,21 @@ const ProductEditScreen = () => {
     error,
   } = useGetProductDetailsQuery(productId);
 
-  const [updateProduct, { isLoading: loadingUpdate }] =
-    useUpdateProductMutation();
-
-  const [uploadProductImage, { isLoading: loadingUpload }] =
-    useUploadProductImageMutation();
-
+  const [updateProduct, { isLoading: loadingUpdate }] = useUpdateProductMutation();
+  const [uploadProductImage, { isLoading: loadingUpload }] = useUploadProductImageMutation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (product) {
+      setName(product.name);
+      setPrice(product.price);
+      setImage(product.image);
+      setBrand(product.brand);
+      setCategory(product.category);
+      setCountInStock(product.countInStock);
+      setDescription(product.description);
+    }
+  }, [product]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -58,18 +65,6 @@ const ProductEditScreen = () => {
     }
   };
 
-  useEffect(() => {
-    if (product) {
-      setName(product.name);
-      setPrice(product.price);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
-    }
-  }, [product]);
-
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
     formData.append('image', e.target.files[0]);
@@ -83,107 +78,112 @@ const ProductEditScreen = () => {
   };
 
   return (
-    <>
-      <Link to='/admin/productlist' className='btn btn-light my-3'>
-        Go Back
-      </Link>
-      <FormContainer>
-        <h1>Edit Product</h1>
+    <Paper sx={{ padding: 3 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Link to='/admin/productlist' style={{ textDecoration: 'none' }}>
+            <Button variant='contained' color='primary'>
+              Go Back
+            </Button>
+          </Link>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant='h4'>Edit Product</Typography>
+        </Grid>
         {loadingUpdate && <Loader />}
         {isLoading ? (
-          <Loader />
+          <Loader /> 
         ) : error ? (
-          <Message variant='danger'>{error}</Message>
+          <Message variant='danger'>{error}</Message> 
         ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter name'
+          <Grid item xs={12}>
+            <form onSubmit={submitHandler}>
+              <TextField
+                label='Name'
+                variant='outlined'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='price'>
-              <Form.Label>Price</Form.Label>
-              <Form.Control
+                margin='normal'
+                fullWidth
+              />
+              <TextField
+                label='Price'
                 type='number'
-                placeholder='Enter price'
+                variant='outlined'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='image'>
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter image url'
+                margin='normal'
+                fullWidth
+              />
+              <TextField
+                label='Image URL'
+                variant='outlined'
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
-              <Form.Control
-                label='Choose File'
+                margin='normal'
+                fullWidth
+              />
+              <input
+                accept="image/*"
+                style={{ display: 'none' }}
+                id="raised-button-file"
+                multiple
+                type="file"
                 onChange={uploadFileHandler}
-                type='file'
-              ></Form.Control>
-              {loadingUpload && <Loader />}
-            </Form.Group>
-
-            <Form.Group controlId='brand'>
-              <Form.Label>Brand</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter brand'
+              />
+              <label htmlFor="raised-button-file">
+                <Button variant="contained" component="span" style={{ margin: '1rem 0' }}>
+                  Upload Image
+                </Button>
+              </label>
+              {loadingUpload && <Loader />} {/* Consider updating this component */}
+              <TextField
+                label='Brand'
+                variant='outlined'
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='countInStock'>
-              <Form.Label>Count In Stock</Form.Label>
-              <Form.Control
+                margin='normal'
+                fullWidth
+              />
+              <TextField
+                label='Count In Stock'
                 type='number'
-                placeholder='Enter countInStock'
+                variant='outlined'
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='category'>
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter category'
+                margin='normal'
+                fullWidth
+              />
+              <TextField
+                label='Category'
+                variant='outlined'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='description'>
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter description'
+                margin='normal'
+                fullWidth
+              />
+              <TextField
+                label='Description'
+                variant='outlined'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Button
-              type='submit'
-              variant='primary'
-              style={{ marginTop: '1rem' }}
-            >
-              Update
-            </Button>
-          </Form>
+                margin='normal'
+                fullWidth
+              />
+              <Button
+                type='submit'
+                variant='contained'
+                color='primary'
+                style={{ marginTop: '1rem' }}
+              >
+                Update
+              </Button>
+            </form>
+          </Grid>
         )}
-      </FormContainer>
-    </>
+      </Grid>
+    </Paper>
   );
 };
 
-export default ProductEditScreen;
+export default ProductEdit;

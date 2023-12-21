@@ -19,7 +19,7 @@ import { useProfileMutation } from '../../slices/usersApiSlice';
 import { useGetMyOrdersQuery } from '../../slices/ordersApiSlice';
 import { setCredentials } from '../../slices/authSlice';
 
-const ProfileScreen = () => {
+const Profile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -171,4 +171,4 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default Profile;

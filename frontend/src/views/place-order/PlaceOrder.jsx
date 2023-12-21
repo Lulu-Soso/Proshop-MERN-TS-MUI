@@ -15,7 +15,7 @@ import Loader from '../../components/layouts/Loader';
 import { useCreateOrderMutation } from '../../slices/ordersApiSlice';
 import { clearCartItems } from '../../slices/cartSlice';
 
-const PlaceOrderScreen = () => {
+const PlaceOrder = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
@@ -133,4 +133,4 @@ const PlaceOrderScreen = () => {
   );
 };
 
-export default PlaceOrderScreen;
+export default PlaceOrder;

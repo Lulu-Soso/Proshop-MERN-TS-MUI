@@ -13,7 +13,7 @@ import FormContainer from '../../components/common/FormContainer';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import { savePaymentMethod } from '../../slices/cartSlice';
 
-const PaymentScreen = () => {
+const Payment = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
@@ -66,4 +66,4 @@ const PaymentScreen = () => {
   );
 };
 
-export default PaymentScreen;
+export default Payment;

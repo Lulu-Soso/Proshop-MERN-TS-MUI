@@ -1,11 +1,20 @@
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
-import { FaTimes } from 'react-icons/fa';
-import Message from '../../../components/Message';
-import Loader from '../../../components/layouts/Loader';
+import { Link } from 'react-router-dom';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Button,
+  Paper
+} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import Message from '../../../components/Message'; // Update this component to use MUI
+import Loader from '../../../components/layouts/Loader'; // Update this component to use MUI
 import { useGetOrdersQuery } from '../../../slices/ordersApiSlice';
 
-const OrderListScreen = () => {
+const OrderList = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
 
   return (
@@ -18,53 +27,57 @@ const OrderListScreen = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>USER</th>
-              <th>DATE</th>
-              <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order._id}>
-                <td>{order._id}</td>
-                <td>{order.user && order.user.name}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
-                <td>
-                  {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
-                  ) : (
-                    <FaTimes style={{ color: 'red' }} />
-                  )}
-                </td>
-                <td>
-                  {order.isDelivered ? (
-                    order.deliveredAt.substring(0, 10)
-                  ) : (
-                    <FaTimes style={{ color: 'red' }} />
-                  )}
-                </td>
-                <td>
-                  <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='light' className='btn-sm'>
-                      Details
-                    </Button>
-                  </LinkContainer>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">USER</TableCell>
+                <TableCell align="right">DATE</TableCell>
+                <TableCell align="right">TOTAL</TableCell>
+                <TableCell align="right">PAID</TableCell>
+                <TableCell align="right">DELIVERED</TableCell>
+                <TableCell align="right"></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {orders.map((order) => (
+                <TableRow key={order._id}>
+                  <TableCell component="th" scope="row">
+                    {order._id}
+                  </TableCell>
+                  <TableCell align="right">{order.user && order.user.name}</TableCell>
+                  <TableCell align="right">{order.createdAt.substring(0, 10)}</TableCell>
+                  <TableCell align="right">${order.totalPrice}</TableCell>
+                  <TableCell align="right">
+                    {order.isPaid ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <CloseIcon style={{ color: 'red' }} />
+                    )}
+                  </TableCell>
+                  <TableCell align="right">
+                    {order.isDelivered ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <CloseIcon style={{ color: 'red' }} />
+                    )}
+                  </TableCell>
+                  <TableCell align="right">
+                    <Link to={`/order/${order._id}`}>
+                      <Button variant='outlined'>
+                        Details
+                      </Button>
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
     </>
   );
 };
 
-export default OrderListScreen;
+export default OrderList;

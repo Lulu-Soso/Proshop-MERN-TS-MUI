@@ -11,7 +11,7 @@ import { useLoginMutation } from '../../slices/usersApiSlice';
 import { setCredentials } from '../../slices/authSlice';
 import { toast } from 'react-toastify';
 
-const LoginScreen = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -94,4 +94,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default Login;

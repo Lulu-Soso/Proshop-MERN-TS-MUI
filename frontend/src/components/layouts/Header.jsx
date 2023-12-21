@@ -70,7 +70,7 @@ const Header = () => {
               alt='ProShop'
               style={{ verticalAlign: 'middle', marginRight: '10px' }}
             />
-            ProShop
+            Pixel
           </Typography>
           <SearchBox />
           <IconButton component={Link} to='/cart' color='inherit'>

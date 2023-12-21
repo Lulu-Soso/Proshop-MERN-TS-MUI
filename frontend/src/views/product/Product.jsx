@@ -26,7 +26,7 @@ import Message from '../../components/Message';
 import Meta from '../../components/Meta';
 import { addToCart } from '../../slices/cartSlice';
 
-const ProductScreen = () => {
+const Product = () => {
   const { id: productId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -243,4 +243,4 @@ const ProductScreen = () => {
   );
 };
 
-export default ProductScreen;
+export default Product;
