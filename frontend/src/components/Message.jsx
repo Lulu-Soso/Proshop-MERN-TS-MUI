@@ -1,5 +1,5 @@
 import React from 'react';
-import Alert from '@mui/material/Alert';
+import { Alert } from '@mui/material';
 
 const Message = ({ variant, children }) => {
   const convertVariant = (variantInfo) => {

@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Grid from '@mui/material/Grid';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
+import {
+  Grid,
+  List,
+  ListItem,
+  Button,
+  Card,
+  CardContent,
+  Select,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 import { FaTrash } from 'react-icons/fa';
 import Message from '../../components/Message';
 import { addToCart, removeFromCart } from '../../slices/cartSlice';

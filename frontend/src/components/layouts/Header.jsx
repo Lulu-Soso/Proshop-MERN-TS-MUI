@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Badge from '@mui/material/Badge';
+import {
+  AppBar,
+  Container,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  MenuItem,
+  Badge
+} from '@mui/material';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { useLogoutMutation } from '../../slices/usersApiSlice';
 import { logout } from '../../slices/authSlice';
@@ -54,6 +57,7 @@ const Header = () => {
   return (
     <header>
       <AppBar position='static' color='primary'>
+      <Container>
         <Toolbar>
           <Typography
             variant='h6'
@@ -137,8 +141,10 @@ const Header = () => {
             </>
           )}
         </Toolbar>
+      </Container>
       </AppBar>
     </header>
+
   );
 };
 

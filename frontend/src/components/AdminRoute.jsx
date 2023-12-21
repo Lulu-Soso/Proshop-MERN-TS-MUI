@@ -1,8 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import { Box, CircularProgress } from '@mui/material';
 
 const AdminRoute = () => {
   const { userInfo, isLoading } = useSelector((state) => state.auth);

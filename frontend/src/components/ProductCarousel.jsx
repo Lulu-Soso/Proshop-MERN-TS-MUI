@@ -12,6 +12,7 @@ const ProductCarousel = () => {
   ) : (
     <div>
       {products.length > 0 && (
+        <Box display='flex' justifyContent='center' my={2}>
         <Box
           display='flex'
           flexDirection='column'
@@ -19,12 +20,12 @@ const ProductCarousel = () => {
           bgcolor='primary.main'
           p={2}
           mb={4}
-          my={2}
         >
           <Typography variant='h4' component='div' color='white'>
-            Top Products
+            Top Produits
           </Typography>
         </Box>
+      </Box>
       )}
       <Box display='flex' justifyContent='center'>
         {products.map((product) => (

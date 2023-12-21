@@ -1,8 +1,6 @@
 import React from 'react';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
 import { Link } from 'react-router-dom';
+import { Stepper, Step, StepLabel } from '@mui/material';
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (

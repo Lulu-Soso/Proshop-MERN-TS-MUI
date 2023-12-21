@@ -41,7 +41,7 @@ const HomeScreen = () => {
       ) : (
         <>
           <Meta />
-          <h1>Latest Products</h1>
+          <h1>Derniers Produits</h1>
           <Grid container spacing={3}>
             {data.products.map((product) => (
               <Grid item key={product._id} xs={12} sm={6} lg={4} xl={3}>

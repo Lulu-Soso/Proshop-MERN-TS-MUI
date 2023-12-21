@@ -1,7 +1,6 @@
 import React from 'react';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
 import { Link } from 'react-router-dom';
+import { Pagination, PaginationItem } from '@mui/material';
 
 const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
   return (

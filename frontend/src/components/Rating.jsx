@@ -1,11 +1,10 @@
 import React from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { Box, Typography } from '@mui/material';
 
 const Rating = ({ value, text, color }) => {
   return (
-    <Box display="flex" alignItems="center">
+    <Box display='flex' alignItems='center'>
       {[1, 2, 3, 4, 5].map((star) => (
         <span key={star}>
           {value >= star ? (
@@ -18,7 +17,7 @@ const Rating = ({ value, text, color }) => {
         </span>
       ))}
       {text && (
-        <Typography variant="body2" sx={{ ml: 1 }}>
+        <Typography variant='body2' sx={{ ml: 1 }}>
           {text}
         </Typography>
       )}

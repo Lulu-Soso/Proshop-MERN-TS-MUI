@@ -14,7 +14,7 @@ import {
   FormControl,
   Select,
   MenuItem,
-} from '@mui/material'; // Importation des composants Material-UI
+} from '@mui/material'; 
 import { toast } from 'react-toastify';
 import {
   useGetProductDetailsQuery,
@@ -123,7 +123,7 @@ const ProductScreen = () => {
                       <Grid container>
                         <Grid item>Price:</Grid>
                         <Grid item>
-                          <strong>${product.price}</strong>
+                          <strong>{product.price}€</strong>
                         </Grid>
                       </Grid>
                     </ListItem>

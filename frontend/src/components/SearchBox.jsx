@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
+import { TextField, Button, Box } from '@mui/material';
 
 const SearchBox = () => {
   const navigate = useNavigate();
@@ -20,18 +18,31 @@ const SearchBox = () => {
   };
 
   return (
-    <Box component="form" onSubmit={submitHandler} sx={{ display: 'flex', alignItems: 'center', ml: 1, mr: 1 }}>
+    <Box
+      component='form'
+      onSubmit={submitHandler}
+      sx={{ display: 'flex', alignItems: 'center', ml: 1, mr: 1 }}
+    >
       <TextField
-        variant="outlined"
-        type="text"
-        name="q"
+        variant='outlined'
+        type='text'
+        name='q'
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
-        placeholder="Search Products..."
-        size="small"
-        sx={{ flexGrow: 1, backgroundColor: 'background.paper', borderRadius: '5px' }}
+        placeholder='Search Products...'
+        size='small'
+        sx={{
+          flexGrow: 1,
+          backgroundColor: 'background.paper',
+          borderRadius: '5px',
+        }}
       />
-      <Button type="submit" variant="contained" color="primary" sx={{ p: 1, ml: 1 }}>
+      <Button
+        type='submit'
+        variant='contained'
+        color='primary'
+        sx={{ p: 1, ml: 1 }}
+      >
         Search
       </Button>
     </Box>
