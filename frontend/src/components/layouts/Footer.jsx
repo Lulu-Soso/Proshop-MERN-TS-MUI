@@ -8,7 +8,7 @@ const Footer = () => {
     <footer>
       <Container>
         <Box display='flex' justifyContent='center' py={3}>
-          <Typography variant='body1'>ProShop &copy; {currentYear}</Typography>
+          <Typography variant='body1'>Pixel &copy; {currentYear}</Typography>
         </Box>
       </Container>
     </footer>

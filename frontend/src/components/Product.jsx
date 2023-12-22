@@ -28,7 +28,7 @@ const Product = ({ product }) => {
           </Typography>
         </Link>
 
-        <Rating value={product.rating} text={`${product.numReviews} reviews`} />
+        <Rating value={product.rating} text={`${product.numReviews} avis`} />
 
         <Typography variant='h5' color='text.secondary'>
           {product.price} €

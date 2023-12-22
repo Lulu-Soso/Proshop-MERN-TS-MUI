@@ -47,12 +47,12 @@ const UserEdit = () => {
         <Grid item xs={12}>
           <Link to='/admin/userlist' style={{ textDecoration: 'none' }}>
             <Button variant='contained' color='primary'>
-              Go Back
+              Retourner
             </Button>
           </Link>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant='h4'>Edit User</Typography>
+          <Typography variant='h4'>Modifier l'utilisateur</Typography>
         </Grid>
         {loadingUpdate && <Loader />} 
         {isLoading ? (
@@ -63,7 +63,7 @@ const UserEdit = () => {
           <Grid item xs={12}>
             <form onSubmit={submitHandler}>
               <TextField
-                label='Name'
+                label='Nom'
                 variant='outlined'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -71,7 +71,7 @@ const UserEdit = () => {
                 fullWidth
               />
               <TextField
-                label='Email Address'
+                label='Adresse mail'
                 type='email'
                 variant='outlined'
                 value={email}
@@ -87,7 +87,7 @@ const UserEdit = () => {
                     name="isAdmin"
                   />
                 }
-                label="Is Admin"
+                label="Est administrateur"
                 style={{ margin: '1rem 0' }}
               />
               <Button
@@ -95,7 +95,7 @@ const UserEdit = () => {
                 variant='contained'
                 color='primary'
               >
-                Update
+                Mettre à jour
               </Button>
             </form>
           </Grid>

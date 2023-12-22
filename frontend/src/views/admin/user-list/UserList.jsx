@@ -30,7 +30,7 @@ const UserList = () => {
 
   return (
     <>
-      <Typography variant='h4' sx={{ mb: 2 }}>Users</Typography>
+      <Typography variant='h4' sx={{ mb: 2 }}>Utilisateurs</Typography>
       {isLoading ? (
         <Loader /> // Update or replace this component
       ) : error ? (
@@ -41,7 +41,7 @@ const UserList = () => {
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell>NAME</TableCell>
+                <TableCell>NOM</TableCell>
                 <TableCell>EMAIL</TableCell>
                 <TableCell>ADMIN</TableCell>
                 <TableCell></TableCell>

@@ -29,7 +29,7 @@ const Home = () => {
           to='/'
           className='mb-4'
         >
-          Go Back
+          Retourner
         </Button>
       )}
       {isLoading ? (

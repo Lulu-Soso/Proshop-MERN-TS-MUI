@@ -98,7 +98,7 @@ const Header = () => {
                 >
                   Profile
                 </MenuItem>
-                <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                <MenuItem onClick={logoutHandler}>Déconnexion</MenuItem>
               </Menu>
             </>
           ) : (
@@ -121,21 +121,21 @@ const Header = () => {
                   to='/admin/userlist'
                   onClick={handleCloseAdminMenu}
                 >
-                  Users
+                  Utilisateurs
                 </MenuItem>
                 <MenuItem
                   component={Link}
                   to='/admin/productlist'
                   onClick={handleCloseAdminMenu}
                 >
-                  Products
+                  Produits
                 </MenuItem>
                 <MenuItem
                   component={Link}
                   to='/admin/orderlist'
                   onClick={handleCloseAdminMenu}
                 >
-                  Orders
+                  Commandes
                 </MenuItem>
               </Menu>
             </>

@@ -78,7 +78,7 @@ const Product = () => {
               color='primary'
               style={{ margin: '20px' }}
             >
-              Go Back
+              Retourner
             </Button>
           </Link>
         </Grid>
@@ -108,10 +108,10 @@ const Product = () => {
                 <ListItem>
                   <Rating
                     value={product.rating}
-                    text={`${product.numReviews} reviews`}
+                    text={`${product.numReviews} avis`}
                   />
                 </ListItem>
-                <ListItem>Price: ${product.price}</ListItem>
+                <ListItem>Prix: {product.price} €</ListItem>
                 <ListItem>Description: {product.description}</ListItem>
               </List>
             </Grid>
@@ -121,26 +121,26 @@ const Product = () => {
                   <List>
                     <ListItem>
                       <Grid container>
-                        <Grid item>Price:</Grid>
+                        <Grid item>Prix:</Grid>
                         <Grid item>
-                          <strong>{product.price}€</strong>
+                          <strong>{product.price} €</strong>
                         </Grid>
-                      </Grid>
+                      </Grid> 
                     </ListItem>
                     <ListItem>
                       <Grid container>
                         <Grid item>Status:</Grid>
                         <Grid item>
                           {product.countInStock > 0
-                            ? 'In Stock'
-                            : 'Out Of Stock'}
+                            ? 'En Stock'
+                            : 'Rupture de Stock'}
                         </Grid>
                       </Grid>
                     </ListItem>
                     {product.countInStock > 0 && (
                       <ListItem>
                         <Grid container>
-                          <Grid item>Qty</Grid>
+                          <Grid item>Quantité: </Grid>
                           <Grid item>
                             <FormControl fullWidth>
                               <Select
@@ -168,7 +168,7 @@ const Product = () => {
                         onClick={addToCartHandler}
                         fullWidth
                       >
-                        Add To Cart
+                        Ajouter au panier
                       </Button>
                     </ListItem>
                   </List>
@@ -176,10 +176,10 @@ const Product = () => {
               </Card>
             </Grid>
           </Grid>
-          <Grid container spacing={2} className='review'>
+          <Grid container spacing={2}>
             <Grid item md={6}>
-              <Typography variant='h5'>Reviews</Typography>
-              {product.reviews.length === 0 && <Message>No Reviews</Message>}
+              <Typography variant='h5'>Avis</Typography>
+              {product.reviews.length === 0 && <Message>pas d'avis</Message>}
               <List>
                 {product.reviews.map((review) => (
                   <ListItem key={review._id}>
@@ -190,18 +190,18 @@ const Product = () => {
                   </ListItem>
                 ))}
                 <ListItem>
-                  <Typography variant='h6'>Write a Customer Review</Typography>
+                  <Typography variant='h6'>Écrire un avis</Typography>
                   {loadingProductReview && <Loader />}
                   {userInfo ? (
                     <form onSubmit={submitHandler}>
                       <FormControl fullWidth margin='normal'>
-                        <Typography>Rating</Typography>
+                        <Typography>Évaluation</Typography>
                         <Select
                           required
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
                         >
-                          <MenuItem value=''>Select...</MenuItem>
+                          <MenuItem value=''>Sélectionner...</MenuItem>
                           <MenuItem value='1'>1 - Poor</MenuItem>
                           <MenuItem value='2'>2 - Fair</MenuItem>
                           <MenuItem value='3'>3 - Good</MenuItem>
@@ -210,7 +210,7 @@ const Product = () => {
                         </Select>
                       </FormControl>
                       <FormControl fullWidth margin='normal'>
-                        <Typography>Comment</Typography>
+                        <Typography>Commentaire</Typography>
                         <TextField
                           required
                           multiline
@@ -225,12 +225,12 @@ const Product = () => {
                         variant='contained'
                         color='primary'
                       >
-                        Submit
+                        Envoyer
                       </Button>
                     </form>
                   ) : (
                     <Message>
-                      Please <Link to='/login'>sign in</Link> to write a review
+                      Veuillez vous <Link to='/login'>connecter</Link> pour écrire un avis.
                     </Message>
                   )}
                 </ListItem>

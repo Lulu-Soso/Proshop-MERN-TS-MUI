@@ -29,7 +29,7 @@ const SearchBox = () => {
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
-        placeholder='Search Products...'
+        placeholder='rechercher des produits...'
         size='small'
         sx={{
           flexGrow: 1,
@@ -43,7 +43,7 @@ const SearchBox = () => {
         color='primary'
         sx={{ p: 1, ml: 1 }}
       >
-        Search
+        Rechercher
       </Button>
     </Box>
   );

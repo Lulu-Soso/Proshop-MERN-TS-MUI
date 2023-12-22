@@ -7,22 +7,22 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
     <Stepper activeStep={-1} alternativeLabel>
       <Step completed={step1}>
         <StepLabel>
-          {step1 ? <Link to='/login'>Sign In</Link> : 'Sign In'}
+          {step1 ? <Link to='/login'>Se Connecter</Link> : 'Sign In'}
         </StepLabel>
       </Step>
       <Step completed={step2}>
         <StepLabel>
-          {step2 ? <Link to='/shipping'>Shipping</Link> : 'Shipping'}
+          {step2 ? <Link to='/shipping'>Livraison</Link> : 'Shipping'}
         </StepLabel>
       </Step>
       <Step completed={step3}>
         <StepLabel>
-          {step3 ? <Link to='/payment'>Payment</Link> : 'Payment'}
+          {step3 ? <Link to='/payment'>Paiement</Link> : 'Payment'}
         </StepLabel>
       </Step>
       <Step completed={step4}>
         <StepLabel>
-          {step4 ? <Link to='/placeorder'>Place Order</Link> : 'Place Order'}
+          {step4 ? <Link to='/placeorder'>Passer Commande</Link> : 'Place Order'}
         </StepLabel>
       </Step>
     </Stepper>

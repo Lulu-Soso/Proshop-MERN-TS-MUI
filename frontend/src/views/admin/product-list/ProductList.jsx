@@ -25,7 +25,7 @@ const ProductList= () => {
     useDeleteProductMutation();
 
   const deleteHandler = async (id) => {
-    if (window.confirm('Are you sure')) {
+    if (window.confirm('Êtes-vous sûr ?')) {
       try {
         await deleteProduct(id);
         refetch();
@@ -39,7 +39,7 @@ const ProductList= () => {
     useCreateProductMutation();
 
   const createProductHandler = async () => {
-    if (window.confirm('Are you sure you want to create a new product?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir créer un nouveau produit ?')) {
       try {
         await createProduct();
         refetch();
@@ -53,7 +53,7 @@ const ProductList= () => {
     <>
       <Grid container alignItems='center' justifyContent='space-between'>
         <Grid item>
-          <Typography variant='h4'>Products</Typography>
+          <Typography variant='h4'>Produits</Typography>
         </Grid>
         <Grid item>
           <Button 
@@ -62,7 +62,7 @@ const ProductList= () => {
             color='primary' 
             onClick={createProductHandler}
           >
-            Create Product
+            Créer un Produit
           </Button>
         </Grid>
       </Grid>
@@ -80,10 +80,10 @@ const ProductList= () => {
               <TableHead>
                 <TableRow>
                   <TableCell>ID</TableCell>
-                  <TableCell>NAME</TableCell>
-                  <TableCell>PRICE</TableCell>
-                  <TableCell>CATEGORY</TableCell>
-                  <TableCell>BRAND</TableCell>
+                  <TableCell>NOM</TableCell>
+                  <TableCell>PRIX</TableCell>
+                  <TableCell>CATÉGORIE</TableCell>
+                  <TableCell>MARQUE</TableCell>
                   <TableCell></TableCell>
                 </TableRow>
               </TableHead>

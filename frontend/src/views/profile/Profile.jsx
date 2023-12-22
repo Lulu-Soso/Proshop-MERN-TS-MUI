@@ -61,14 +61,14 @@ const Profile = () => {
   return (
     <Grid container spacing={2}>
       <Grid item md={3}>
-        <Typography variant='h5'>User Profile</Typography>
+        <Typography variant='h5'>Profile utilisateur</Typography>
 
         <form onSubmit={submitHandler}>
           <TextField
             margin='normal'
             required
             fullWidth
-            label='Name'
+            label='Nom'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -76,7 +76,7 @@ const Profile = () => {
             margin='normal'
             required
             fullWidth
-            label='Email Address'
+            label='Adresse Mail'
             type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -84,7 +84,7 @@ const Profile = () => {
           <TextField
             margin='normal'
             fullWidth
-            label='Password'
+            label='Mot de passe'
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -92,7 +92,7 @@ const Profile = () => {
           <TextField
             margin='normal'
             fullWidth
-            label='Confirm Password'
+            label='Confirmer le mot de passe'
             type='password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -105,13 +105,13 @@ const Profile = () => {
             fullWidth
             sx={{ mt: 3 }}
           >
-            Update
+            Mettre à jour
           </Button>
           {loadingUpdateProfile && <Loader />}
         </form>
       </Grid>
       <Grid item md={9}>
-        <Typography variant='h5'>My Orders</Typography>
+        <Typography variant='h5'>Mes commandes</Typography>
         {isLoading ? (
           <Loader />
         ) : error ? (
@@ -126,8 +126,8 @@ const Profile = () => {
                   <TableCell>ID</TableCell>
                   <TableCell>DATE</TableCell>
                   <TableCell>TOTAL</TableCell>
-                  <TableCell>PAID</TableCell>
-                  <TableCell>DELIVERED</TableCell>
+                  <TableCell>PAYÉ</TableCell>
+                  <TableCell>LIVRÉ</TableCell>
                   <TableCell></TableCell>
                 </TableRow>
               </TableHead>

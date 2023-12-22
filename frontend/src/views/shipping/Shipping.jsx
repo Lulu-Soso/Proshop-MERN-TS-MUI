@@ -35,7 +35,7 @@ const Shipping = () => {
       <CheckoutSteps step1 step2 />
       <FormContainer>
         <Typography variant='h4' sx={{ mt: 3, mb: 2 }}>
-          Shipping
+          Livraison
         </Typography>
         <form onSubmit={submitHandler}>
           <Grid container spacing={2}>

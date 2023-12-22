@@ -83,12 +83,12 @@ const ProductEdit = () => {
         <Grid item xs={12}>
           <Link to='/admin/productlist' style={{ textDecoration: 'none' }}>
             <Button variant='contained' color='primary'>
-              Go Back
+              Retourner
             </Button>
           </Link>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant='h4'>Edit Product</Typography>
+          <Typography variant='h4'>Modifier le Produit</Typography>
         </Grid>
         {loadingUpdate && <Loader />}
         {isLoading ? (
@@ -99,7 +99,7 @@ const ProductEdit = () => {
           <Grid item xs={12}>
             <form onSubmit={submitHandler}>
               <TextField
-                label='Name'
+                label='Nom'
                 variant='outlined'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -107,7 +107,7 @@ const ProductEdit = () => {
                 fullWidth
               />
               <TextField
-                label='Price'
+                label='Prix'
                 type='number'
                 variant='outlined'
                 value={price}
@@ -133,12 +133,12 @@ const ProductEdit = () => {
               />
               <label htmlFor="raised-button-file">
                 <Button variant="contained" component="span" style={{ margin: '1rem 0' }}>
-                  Upload Image
+                  Télécharger Image
                 </Button>
               </label>
               {loadingUpload && <Loader />} {/* Consider updating this component */}
               <TextField
-                label='Brand'
+                label='Marque'
                 variant='outlined'
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
@@ -146,7 +146,7 @@ const ProductEdit = () => {
                 fullWidth
               />
               <TextField
-                label='Count In Stock'
+                label='Quantité en Stock'
                 type='number'
                 variant='outlined'
                 value={countInStock}
@@ -155,7 +155,7 @@ const ProductEdit = () => {
                 fullWidth
               />
               <TextField
-                label='Category'
+                label='Catégorie'
                 variant='outlined'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -176,7 +176,7 @@ const ProductEdit = () => {
                 color='primary'
                 style={{ marginTop: '1rem' }}
               >
-                Update
+                Mettre à jour
               </Button>
             </form>
           </Grid>

@@ -53,7 +53,7 @@ const ProductCarousel = () => {
                 {product.name}
               </Typography>
               <Typography variant='body2' component='div' align='center'>
-                ${product.price}
+                {product.price} €
               </Typography>
             </Box>
           </Link>

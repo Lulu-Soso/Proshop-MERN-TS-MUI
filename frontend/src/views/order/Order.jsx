@@ -115,7 +115,7 @@ const Order = () => {
   ) : (
     <>
       <Typography variant='h4' gutterBottom>
-        Order {order._id}
+        Commande {order._id}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={8}>
@@ -123,9 +123,9 @@ const Order = () => {
             <ListItem>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Typography variant='h6'>Shipping</Typography>
+                  <Typography variant='h6'>Livraison</Typography>
                   <p>
-                    <strong>Name: </strong> {order.user.name}
+                    <strong>Nom: </strong> {order.user.name}
                   </p>
                   <p>
                     <strong>Email: </strong>{' '}
@@ -134,7 +134,7 @@ const Order = () => {
                     </a>
                   </p>
                   <p>
-                    <strong>Address:</strong>
+                    <strong>Adresse: </strong>
                     {order.shippingAddress.address},{' '}
                     {order.shippingAddress.city}
                     {order.shippingAddress.postalCode},{' '}
@@ -145,7 +145,7 @@ const Order = () => {
                       Delivered on {order.deliveredAt}
                     </Message>
                   ) : (
-                    <Message variant='danger'>Not Delivered</Message>
+                    <Message variant='danger'>non livré</Message>
                   )}
                 </Grid>
               </Grid>
@@ -154,15 +154,15 @@ const Order = () => {
             <ListItem>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Typography variant='h6'>Payment Method</Typography>
+                  <Typography variant='h6'>Méthode de paiement</Typography>
                   <p>
-                    <strong>Method: </strong>
+                    <strong>Méthode: </strong>
                     {order.paymentMethod}
                   </p>
                   {order.isPaid ? (
-                    <Message variant='success'>Paid on {order.paidAt}</Message>
+                    <Message variant='success'>Payé le {order.paidAt}</Message>
                   ) : (
-                    <Message variant='danger'>Not Paid</Message>
+                    <Message variant='danger'>Non payé</Message>
                   )}
                 </Grid>
               </Grid>
@@ -171,9 +171,9 @@ const Order = () => {
             <ListItem>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Typography variant='h6'>Order Items</Typography>
+                  <Typography variant='h6'>Articles de la commande</Typography>
                   {order.orderItems.length === 0 ? (
-                    <Message>Order is empty</Message>
+                    <Message>La commande est vide</Message>
                   ) : (
                     order.orderItems.map((item, index) => (
                       <Grid container key={index} spacing={2}>
@@ -204,7 +204,7 @@ const Order = () => {
         <Grid item xs={12} md={4}>
           <Card>
             <CardContent>
-              <Typography variant='h6'>Order Summary</Typography>
+              <Typography variant='h6'>Résumé de la commande</Typography>
               {/* Summary items logic */}
               {!order.isPaid && (
                 <>
@@ -242,7 +242,7 @@ const Order = () => {
                     onClick={deliverHandler}
                     fullWidth
                   >
-                    Mark As Delivered
+                    Marquer comme livré
                   </Button>
                 )}
             </CardContent>

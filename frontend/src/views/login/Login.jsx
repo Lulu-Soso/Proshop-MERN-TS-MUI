@@ -45,11 +45,11 @@ const Login = () => {
   return (
     <Container maxWidth='sm'>
       <Typography variant='h4' sx={{ mt: 3 }}>
-        Sign In
+        Se connecter
       </Typography>
       <form onSubmit={submitHandler}>
         <TextField
-          label='Email Address'
+          label='Adresse mail'
           variant='outlined'
           type='email'
           fullWidth
@@ -58,7 +58,7 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          label='Password'
+          label='Mot de passe'
           variant='outlined'
           type='password'
           fullWidth
@@ -74,18 +74,18 @@ const Login = () => {
           fullWidth
           sx={{ mt: 3, mb: 2 }}
         >
-          Sign In
+          Se connecter
         </Button>
         {isLoading && <Loader />}
       </form>
       <Grid container>
         <Grid item xs>
           <Typography variant='body1'>
-            New Customer?{' '}
+          Nouveau client?{' '}
             <Link
               to={redirect ? `/register?redirect=${redirect}` : '/register'}
             >
-              Register
+              S'inscrire
             </Link>
           </Typography>
         </Grid>

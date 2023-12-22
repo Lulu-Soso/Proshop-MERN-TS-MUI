@@ -19,7 +19,7 @@ const OrderList = () => {
 
   return (
     <>
-      <h1>Orders</h1>
+      <h1>Commandes</h1>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -32,11 +32,11 @@ const OrderList = () => {
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell align="right">USER</TableCell>
+                <TableCell align="right">UTILISATEUR</TableCell>
                 <TableCell align="right">DATE</TableCell>
                 <TableCell align="right">TOTAL</TableCell>
-                <TableCell align="right">PAID</TableCell>
-                <TableCell align="right">DELIVERED</TableCell>
+                <TableCell align="right">PAYÉ</TableCell>
+                <TableCell align="right">LIVRÉ</TableCell>
                 <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>

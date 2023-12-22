@@ -39,11 +39,11 @@ const Cart= () => {
     <Grid container spacing={3}>
       <Grid item xs={12} md={8}>
         <Typography variant='h4' gutterBottom>
-          Shopping Cart
+        Panier d'Achat
         </Typography>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to='/'>Go Back</Link>
+            Votre panier est vide <Link to='/'>Retourner</Link>
           </Message>
         ) : (
           <List>
@@ -61,7 +61,7 @@ const Cart= () => {
                     <Link to={`/product/${item._id}`}>{item.name}</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    ${item.price}
+                    {item.price} €
                   </Grid>
                   <Grid item xs={3}>
                     <Select
@@ -100,8 +100,8 @@ const Cart= () => {
             <List>
               <ListItem>
                 <Typography variant='h6'>
-                  Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                  ) items
+                Sous-total ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                  ) articles
                 </Typography>
                 <Typography variant='h6'>
                   $
@@ -119,7 +119,7 @@ const Cart= () => {
                   onClick={checkoutHandler}
                   fullWidth
                 >
-                  Proceed To Checkout
+                  Procéder au paiement
                 </Button>
               </ListItem>
             </List>

@@ -57,7 +57,7 @@ const PlaceOrder = () => {
             <ListItem>
               <Typography variant='h6'>Shipping</Typography>
               <Typography>
-                <strong>Address:</strong>
+                <strong>Adresse:</strong>
                 {`${cart.shippingAddress.address}, ${cart.shippingAddress.city} 
                  ${cart.shippingAddress.postalCode}, ${cart.shippingAddress.country}`}
               </Typography>
@@ -66,7 +66,7 @@ const PlaceOrder = () => {
             <ListItem>
               <Typography variant='h6'>Payment Method</Typography>
               <Typography>
-                <strong>Method: </strong>
+                <strong>Méthode: </strong>
                 {cart.paymentMethod}
               </Typography>
             </ListItem>
@@ -74,7 +74,7 @@ const PlaceOrder = () => {
             <ListItem>
               <Typography variant='h6'>Order Items</Typography>
               {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
+                <Message>Votre panier est vide</Message>
               ) : (
                 <List>
                   {cart.cartItems.map((item, index) => (
@@ -109,7 +109,7 @@ const PlaceOrder = () => {
         <Grid item xs={12} md={4}>
           <Card>
             <CardContent>
-              <Typography variant='h6'>Order Summary</Typography>
+              <Typography variant='h6'>Résumé de la commande</Typography>
               {/* Display order summary here */}
 
               {error && <Message variant='danger'>{error}</Message>}
@@ -122,7 +122,7 @@ const PlaceOrder = () => {
                 onClick={placeOrderHandler}
                 fullWidth
               >
-                Place Order
+                Passer Commande
               </Button>
               {isLoading && <Loader />}
             </CardContent>
